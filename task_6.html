@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><a href="index.html">На головну</a></h1>
+    <p>
+      Дано послідовність цін товарів та назв (у окремих масивах). Вивести на
+      екран ті, які може собі дозволити користувач (кількість грошей задається).
+      Приклад збереження даних let productsPrices = [1000, 20, 31] let
+      productsTitles = [‘cheese’, ‘juice’, ‘bread’]
+    </p>
+    <script>
+      const productsPrices = [1000, 20, 31, 40, 300];
+      const productsTitles = ["cheese", "juice", "bread", "apples", "pork"];
+
+      const customersWallet = parseFloat(prompt("Enter customers sum"));
+
+      function getffordableProducts(
+        productsPrices,
+        productsTitles,
+        customersWallet
+      ) {
+        const affordableProducts = [];
+        for (let i = 0; i < productsPrices.length; i++) {
+          if (productsPrices[i] <= customersWallet)
+            affordableProducts.push(
+              `${productsTitles[i]}-${productsPrices[i]}`
+            );
+        }
+        return affordableProducts;
+      }
+      const affordableProducts = getffordableProducts(
+        productsPrices,
+        productsTitles,
+        customersWallet
+      );
+      document.write(affordableProducts);
+    </script>
+  </body>
+</html>

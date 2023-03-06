@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><a href="index.html">На головну</a></h1>
+    <p>
+      Дано послідовність оцінок учня. Підрахувати кількість: 1) двійок 2)
+      кількість хороших оцінок (добре, відмінно); 3) кількість оцінок, які нижче
+      середнього.
+    </p>
+    <script>
+      const studentsScore = [2, 3, 3, 4, 5, 5, 5, 4, 3, 5, 5, 4, 4, 4, 4, 3];
+
+      const numberOf_2 = function (studentsScore) {
+        let num_2 = 0;
+        for (let i = 0; i < studentsScore.length; i++) {
+          if (studentsScore[i] === 2) num_2++;
+        }
+        return num_2;
+      };
+
+      const numberOfPositiveScore = function (studentsScore) {
+        let positiveCounter = 0;
+        for (let i = 0; i < studentsScore.length; i++) {
+          if (studentsScore[i] > 3) positiveCounter++;
+        }
+        return positiveCounter;
+      };
+
+      function getaverageScore(studentsScore) {
+        let sum = 0;
+        for (let i = 0; i < studentsScore.length; i++) {
+          sum += studentsScore[i];
+        }
+        return sum / studentsScore.length;
+      }
+
+      const lesThanAverage = function (studentsScore) {
+        let lessCounter = 0;
+        const averageScore = getaverageScore(studentsScore);
+        for (let i = 0; i < studentsScore.length; i++) {
+          if (studentsScore[i] < averageScore) lessCounter++;
+        }
+        return lessCounter;
+      };
+
+      document.write(
+        `Number of 2 -${numberOf_2(
+          studentsScore
+        )}<br> Number of positive -${numberOfPositiveScore(
+          studentsScore
+        )}<br>Less than average -${lesThanAverage(studentsScore)}`
+      );
+    </script>
+  </body>
+</html>

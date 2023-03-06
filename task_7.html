@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><a href="index.html">На головну</a></h1>
+    <p>
+      Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей
+      за: 1) за весь рік; 2) у першій половині року; 3) у другій половині року;
+      4) за літо; 5) за ІІ квартал; 6) за парні місяці (з парними номерами); 7)
+      за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+    </p>
+    <script>
+      const monthlyBills = [
+        350, 600, 580, 450, 700, 370, 640, 560, 360, 590, 460, 480,
+      ];
+
+      function calcBillByPeriod(monthlyBills, startMonth, endMonth) {
+        let sum = 0;
+        for (let i = startMonth; i <= endMonth; i++) {
+          sum += monthlyBills[i - 1];
+        }
+        return sum;
+      }
+
+      function calcEvenMonth(monthlyBills) {
+        let sum = 0;
+        for (let i = 1; i < 12; i += 2) {
+          sum += monthlyBills[i];
+        }
+        return sum;
+      }
+
+      function calcBillSumByMonth(monthlyBills, months) {
+        let sum = 0;
+        for (let i = 0; i < months.length; i++) {
+          sum += monthlyBills[months[i] - 1];
+        }
+        return sum;
+      }
+      document.write(`${calcBillByPeriod(monthlyBills, 1, 12)}<br>`);
+      document.write(`${calcBillByPeriod(monthlyBills, 1, 6)}<br>`);
+      document.write(`${calcBillByPeriod(monthlyBills, 7, 12)}<br>`);
+      document.write(`${calcBillByPeriod(monthlyBills, 6, 8)}<br>`);
+      document.write(`${calcBillByPeriod(monthlyBills, 4, 6)}<br>`);
+      document.write(`${calcEvenMonth(monthlyBills)}<br>`);
+      document.write(calcBillSumByMonth(monthlyBills, [3, 6, 9, 12]));
+    </script>
+  </body>
+</html>

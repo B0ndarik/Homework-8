@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><a href="index.html">На головну</a></h1>
+    <p>
+      Морський бій. Користувач вводить кількість клітинок одновимірного масиву
+      та кількість одиночних кораблів. Комп’ютер довільно розміщує ці одиночні
+      кораблі у масиві по один у клітинці (якщо у клітинці 0, то клітинка пуста,
+      якщо 1 – то це означає, що там є корабель. Користувач вводить номер
+      клітинки, куди стріляє. Гра продовжується до тих пір, поки не будуть
+      потоплені усі кораблі.
+    </p>
+    <script>
+      const numberOfCells = parseInt(prompt("Enter number of cells"));
+      const numberOfWarships = parseInt(prompt("Enter number of warships"));
+
+      function setShips(numberOfCells, numberOfWarships) {
+        let shipArr = [];
+        for (let i = 0; i < numberOfCells; i++) {
+          shipArr[i] = 0;
+        }
+        for (let i = 0; i < numberOfWarships; i++) {
+          let randomCell = Math.floor(Math.random() * numberOfCells);
+          if (shipArr[randomCell] != 1) shipArr[randomCell] = 1;
+          else i--;
+        }
+        return shipArr;
+      }
+
+      const shipArr = setShips(numberOfCells, numberOfWarships);
+      console.log(shipArr);
+
+      function getPlay(shipArr, numberOfCells, numberOfWarships) {
+        let warshipGoesDown = 0;
+        let move = 0;
+        do {
+          let userMove = parseInt(
+            prompt(`Enter your Shot (1-${numberOfCells})`)
+          );
+          move++;
+          if (shipArr[userMove - 1] === 1) {
+            warshipGoesDown++;
+            alert(
+              `Warship went down, ${
+                numberOfWarships - warshipGoesDown
+              } ship(s) left`
+            );
+          }
+        } while (warshipGoesDown < numberOfWarships);
+        return move;
+      }
+
+      document.write(
+        `Won in ${getPlay(shipArr, numberOfCells, numberOfWarships)} moves`
+      );
+    </script>
+  </body>
+</html>

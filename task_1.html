@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><a href="index.html">На головну</a></h1>
+    <p>
+      Дано масив, який містить оцінки з К предметів. Знайти середній бал і
+      з’ясувати до якої категорії він відноситься (відмінник, двійочник (має
+      хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча
+      би одна трійка)).
+    </p>
+    <script>
+      const subjectNumber = parseInt(prompt("Enter the number of subjects"));
+
+      function getScoreArr(subjects) {
+        const score = [];
+        for (let i = 0; i < subjects; i++) {
+          let subjectScore = parseInt(
+            prompt(`Enter score of subject ${i + 1}`)
+          );
+          score.push(subjectScore);
+        }
+        return score;
+      }
+
+      function getAverageScore(score) {
+        let scoreSum = 0;
+        for (let i = 0; i < score.length; i++) {
+          scoreSum += score[i];
+        }
+        return scoreSum / score.length;
+      }
+
+      function getStudentEvaluationText(scoreArr) {
+        let minScore = scoreArr[0];
+        for (let i = 1; i < scoreArr.length; i++) {
+          if (scoreArr[i] < minScore) minScore = scoreArr[i];
+        }
+        switch (minScore) {
+          case 1:
+          case 2:
+            return "Двійочник";
+          case 3:
+            return "Трійочник";
+          case 4:
+            return "Хорошист";
+          default:
+            return "Відмінник";
+        }
+      }
+
+      const scoreArr = getScoreArr(subjectNumber);
+      const averageScore = getAverageScore(scoreArr);
+      const evaluationText = getStudentEvaluationText(scoreArr);
+
+      document.write(
+        `Average score -${averageScore}<br> Evaluation -${evaluationText}`
+      );
+    </script>
+  </body>
+</html>

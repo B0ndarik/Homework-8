@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><a href="index.html">На головну</a></h1>
+    <p>
+      Дано одновимірний масив, у якому зберігається певна виграшна сума
+      (елементи заповнюються випадковим чином значеннями від -500 до 500).
+      Надаючи користувачу можливість вибирати номери елементів (поки він не
+      відмовиться). Знаходити сумарний виграш.
+    </p>
+  </body>
+  <script>
+    const minValue = -500;
+    const maxValue = 500;
+
+    function getPrizeArr(minValue, maxValue) {
+      let prize = [];
+      for (let i = 0; i < 100; i++) {
+        let randomPrize =
+          minValue + Math.floor(Math.random() * (maxValue - minValue + 1));
+        prize.push(randomPrize);
+      }
+      return prize;
+    }
+
+    const prizeArr = getPrizeArr(minValue, maxValue);
+
+    function lotteryPlay(prizeArr) {
+      let finalPrize = 0;
+      let userRequest;
+      do {
+        userRequest = parseInt(
+          prompt("Choose the number of prize cell (1-100)")
+        );
+        if (userRequest) finalPrize += prizeArr[userRequest - 1];
+        alert(`Your score is ${finalPrize}`);
+      } while (userRequest);
+      return finalPrize;
+    }
+
+    lotteryPlay(prizeArr);
+  </script>
+</html>

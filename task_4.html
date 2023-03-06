@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><a href="index.html">На головну</a></h1>
+    <p>
+      Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які
+      : • починаються на букву «А»; • перша і остання літери співпадають; •
+      складаються з більше ніш 5 символів;
+    </p>
+    <script>
+      const licensePlates = [
+        "F4487ZP",
+        "AP5467CB",
+        "AA6578EC",
+        "CB4342BC",
+        "SERJ",
+      ];
+
+      const aBeginningPlates = function (licensePlates) {
+        let numberOfA = 0;
+        for (let i = 0; i < licensePlates.length; i++) {
+          if (licensePlates[i][0] === "A") numberOfA++;
+        }
+        return numberOfA;
+      };
+
+      const firstAndLastEqual = function (licensePlates) {
+        let firstAndLast = 0;
+        for (let i = 0; i < licensePlates.length; i++) {
+          if (
+            licensePlates[i][0] ===
+            licensePlates[i][licensePlates[i].length - 1]
+          )
+            firstAndLast++;
+        }
+        return firstAndLast;
+      };
+      const moreThan_5 = function (licensePlates) {
+        let more_5 = 0;
+        for (let i = 0; i < licensePlates.length; i++) {
+          if (licensePlates[i].length > 5) more_5++;
+        }
+        return more_5;
+      };
+      document.write(
+        `Beginning with A -${aBeginningPlates(
+          licensePlates
+        )}<br> First and Last equals -${firstAndLastEqual(
+          licensePlates
+        )}<br>More than 5 symbols -${moreThan_5(licensePlates)}`
+      );
+    </script>
+  </body>
+</html>
